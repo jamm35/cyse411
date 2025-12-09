@@ -4,9 +4,26 @@ const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
 // bcrypt is installed but NOT used in the vulnerable baseline:
 const bcrypt = require("bcrypt");
+const helmet = require("helmet");
 
 const app = express();
 const PORT = 3001;
+
+app.use(
+  helmet.contentSecurityPolicy({
+    useDefaults: true,
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'"],
+      styleSrc: ["'self'"],
+      imgSrc: ["'self'"],
+      objectSrc: ["'none'"],
+      baseUri: ["'self'"],
+      formAction: ["'self'"],
+      connectSrc: ["'self'"]
+    }
+  })
+);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
