@@ -20,15 +20,15 @@ jobs:
           node-version: '20'
 
       - name: Install lab dependencies
-        working-directory: fastbank_insecure_classwork/backend
+        working-directory: fastbank-auth-lab
         run: |
           npm install
 
       - name: Start vulnerable app
-        working-directory: fastbank_insecure_classwork/backend
+        working-directory: fastbank-auth-lab
         run: |
-          nohup npm start &
-          sleep 40
+          npm start &
+          sleep 20
 
       - name: Run OWASP ZAP full scan
         uses: zaproxy/action-full-scan@v0.13.0
