@@ -5,12 +5,34 @@ const crypto = require("crypto");
 // bcrypt is installed but NOT used in the vulnerable baseline:
 const bcrypt = require("bcrypt");
 const lusca = require('lusca');
+const helmet = require('helmet');
 
 
 const app = express();
 const PORT = 3001;
 
 app.disable('x-powered-by');
+
+app.use(helmet({
+    permissionsPolicy: {
+        policy: {
+            'camera': ['self'],
+            'geolocation': ['self'],
+            'microphone': ['none'],
+        }
+    },
+    contentSecurityPolicy: {
+        directives: {
+            'frame-ancestors': ["'none'"],
+            'form-action': ["'self'"],
+            'default-src': ["'self'"],
+            'script-src': ["'self'", "'unsafe-inline'"],
+            'style-src': ["'self'", "'unsafe-inline'"],
+            'connect-src': ["'self'"],
+            'img-src': ["'self'", 'data:'],
+        },
+    },
+}));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
