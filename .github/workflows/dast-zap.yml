@@ -36,7 +36,7 @@ jobs:
           target: 'http://host.docker.internal:3001'
           fail_action: true
           allow_issue_writing: false
-          report_name: 'fastbank-zap-report'
+          artifact_name: 'fastbank-zap-report'
 
   zap_scan_canonicalization:
     runs-on: ubuntu-latest
@@ -67,7 +67,7 @@ jobs:
           target: 'http://host.docker.internal:4000'
           fail_action: true
           allow_issue_writing: false
-          report_name: 'canonicalization-zap-report'
+          artifact_name: 'canonicalization-zap-report'
 
   zap_scan_idor:
     runs-on: ubuntu-latest
@@ -98,6 +98,6 @@ jobs:
           target: 'http://host.docker.internal:3000'
           fail_action: true
           allow_issue_writing: false
-          report_name: 'idor-zap-report'
+          artifact_name: 'idor-zap-report'
   
 
