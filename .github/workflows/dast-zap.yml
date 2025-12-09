@@ -27,9 +27,8 @@ jobs:
       - name: Start vulnerable app
         working-directory: fastbank_insecure_classwork/backend
         run: |
-          npm start &
+          nohup npm start &
           sleep 40
-          wait
 
       - name: Run OWASP ZAP full scan
         uses: zaproxy/action-full-scan@v0.13.0
