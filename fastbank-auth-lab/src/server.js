@@ -10,7 +10,7 @@ const lusca = require('lusca');
 const app = express();
 const PORT = 3001;
 
-
+app.disable('x-powered-by');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
